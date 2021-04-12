@@ -1,0 +1,12 @@
+{
+  "name": "BeeControl",
+  "displayName": "BeeControl",
+  "expo": {
+    "name": "BeeControl",
+    "slug": "BeeControl",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
