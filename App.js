@@ -1,112 +1,71 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { Component } from 'react';
+import { TextInput } from 'react-native-paper';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { Button } from 'react-native-paper';
+import { StyleSheet, ImageBackground } from 'react-native';
 
-import React from 'react';
-import { Node } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const MyComponent = () => {
+    const [text, setText] = React.useState('');
 
-const Section = ({ children, title }) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+    return (
+
+        <PaperProvider>
+
+
+            <ImageBackground
+                source={require('./slike/prijava.jpg')}
+                style={styles.container} >
+
+
+                <TextInput
+                    label="Username"
+                    mode="flat"
+                    style={{ height: 50, width: 250, marginTop: 350 }}
+                    selectionColor="#000000"
+                    underlineColor="#FFC532"
+                    value={text}
+                    onChangeText={text => setText(text)}
+                    theme={{ colors: { text: 'black', primary: "#FFC532" } }}
+                />
+
+                <TextInput
+                    label="Password"
+                    mode="flat"
+                    style={{ height: 50, width: 250, marginTop: 10 }}
+                    selectionColor="#000000"
+                    underlineColor="#FFC532"
+                    value1={text}
+                    onChangeText={text1 => setText(text)}
+                    secureTextEntry={true}
+                    theme={{ colors: { text: 'black', primary: "#FFC532" } }}
+                />
+
+                <Button
+                    mode="contained"
+                    dark
+                    style={{ height: 40, width: 110, marginTop: 10, marginLeft: 140 }}
+                    color="#FFC532" onPress={() => console.log('Pressed')}>
+                    Login
+                </Button>
+
+            </ImageBackground>
+
+
+        </PaperProvider>
+
+
+    );
 };
-
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+export default MyComponent;
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+    container: {
+
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+
+    },
 });
 
-export default App;
