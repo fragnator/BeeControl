@@ -8,40 +8,112 @@ const RegisterScreen = props => {
   const [password, setPassword] = React.useState('');
   return (
     <View style={styles.container}>
+      <Text
+        style={styles.logo}
+        theme={{
+          colors: {
+            text: '#ffffff',
+          },
+        }}>
+        Register
+      </Text>
+
       <TextInput
         style={styles.username}
         label="Username"
         value={username}
+        theme={{
+          colors: {
+            text: '#ffffff',
+            accent: '#ffffff',
+            primary: '#ffffff',
+            placeholder: '#ffffff',
+            background: 'transparent',
+          },
+        }}
+        underlineColor="#ffffff"
         onChangeText={username => setUsername(username)}
+        dense
       />
 
       <TextInput
         style={styles.password}
         label="Email"
         value={username}
+        theme={{
+          colors: {
+            text: '#ffffff',
+            accent: '#ffffff',
+            primary: '#ffffff',
+            placeholder: '#ffffff',
+            background: 'transparent',
+          },
+        }}
+        underlineColor="#ffffff"
         onChangeText={username => setUsername(username)}
+        dense
       />
 
       <TextInput
         style={styles.password}
         label="Password"
         value={password}
+        theme={{
+          colors: {
+            text: '#ffffff',
+            accent: '#ffffff',
+            primary: '#ffffff',
+            placeholder: '#ffffff',
+            background: 'transparent',
+          },
+        }}
+        underlineColor="#ffffff"
         onChangeText={password => setPassword(password)}
+        dense
         secureTextEntry={true}
       />
 
       <TextInput
         style={styles.password}
-        label="Password"
+        label="Re-type password"
         value={password}
+        theme={{
+          colors: {
+            text: '#ffffff',
+            accent: '#ffffff',
+            primary: '#ffffff',
+            placeholder: '#ffffff',
+            background: 'transparent',
+          },
+        }}
+        underlineColor="#ffffff"
         onChangeText={password => setPassword(password)}
+        dense
         secureTextEntry={true}
       />
 
       <Button
         style={styles.login}
-        icon="login"
         mode="contained"
+        color="#ffb300"
+        dark
+        onPress={() =>
+          Navigation.setRoot({
+            root: {
+              component: {
+                name: 'Home',
+              },
+            },
+          })
+        }>
+        Register
+      </Button>
+
+      <Button
+        style={styles.register}
+        mode="text"
+        dark
+        theme={{colors: {text: '#FFFFFF', primary: '#FFFFFF'}}}
         onPress={() =>
           Navigation.push(props.componentId, {
             component: {
@@ -49,7 +121,7 @@ const RegisterScreen = props => {
             },
           })
         }>
-        Register
+        Already have an account? Login
       </Button>
     </View>
   );
@@ -57,26 +129,38 @@ const RegisterScreen = props => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
     display: 'flex',
-    paddingTop: 10,
-    padding: 15,
-    backgroundColor: 'whitesmoke',
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingVertical: 24,
+    backgroundColor: '#fdd835',
   },
   username: {
-    marginTop: 'auto',
-    marginBottom: 15,
+    backgroundColor: 'transparent',
+    marginBottom: 16,
+    paddingHorizontal: 0,
+    color: '#ffb300',
   },
   password: {
-    marginBottom: 15,
+    backgroundColor: 'transparent',
+    marginBottom: 16,
+    paddingHorizontal: 0,
   },
   login: {
-    marginBottom: 'auto',
+    marginTop: 16,
+    color: '#ffb300',
   },
   register: {
+    marginTop: 24,
+    marginBottom: 'auto',
+  },
+  logo: {
     marginTop: 'auto',
-    alignSelf: 'flex-end',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: 64,
+    fontSize: 40,
+    fontWeight: 'bold',
   },
 });
 

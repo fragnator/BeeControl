@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {
@@ -25,11 +25,20 @@ const HomeScreen = props => {
     });
   };
 
+  useEffect(() => {
+    Navigation.mergeOptions(props.componentId, {
+      topBar: {
+        visible: true,
+      },
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
       <ScrollView>
         <Banner
           visible={visible}
+          theme={{colors: {surface: 'blue', primary: '#fdd835', accent: 'red'}}}
           actions={[
             {
               label: 'Learn more',
@@ -37,7 +46,13 @@ const HomeScreen = props => {
             },
           ]}
           icon={({size}) => (
-            <Avatar.Icon {...props} size={42} icon="beehive-outline" />
+            <Avatar.Icon
+              {...props}
+              color="#ffffff"
+              style={{backgroundColor: '#fdd835'}}
+              size={42}
+              icon="beehive-outline"
+            />
           )}>
           There was a problem with BeeHive #1
         </Banner>
@@ -45,7 +60,14 @@ const HomeScreen = props => {
         <Card style={styles.card}>
           <Card.Title
             title="BeeHive #1"
-            left={props => <Avatar.Icon {...props} icon="beehive-outline" />}
+            left={props => (
+              <Avatar.Icon
+                color="#ffffff"
+                style={{backgroundColor: '#fdd835'}}
+                {...props}
+                icon="beehive-outline"
+              />
+            )}
           />
           <Divider />
           <TouchableRipple
@@ -102,7 +124,14 @@ const HomeScreen = props => {
         <Card style={styles.lastCard}>
           <Card.Title
             title="BeeHive #2"
-            left={props => <Avatar.Icon {...props} icon="beehive-outline" />}
+            left={props => (
+              <Avatar.Icon
+                color="#ffffff"
+                style={{backgroundColor: '#fdd835'}}
+                {...props}
+                icon="beehive-outline"
+              />
+            )}
           />
           <Divider />
           <TouchableRipple
@@ -161,6 +190,7 @@ const HomeScreen = props => {
         dark
         style={styles.fab}
         icon="plus"
+        color="#ffffff"
         onPress={() =>
           Navigation.push(props.componentId, {
             component: {
@@ -205,6 +235,7 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     bottom: 0,
+    backgroundColor: '#fdd835',
   },
 });
 

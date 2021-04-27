@@ -1,39 +1,86 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import {Navigation} from 'react-native-navigation';
-import {Button, TextInput, Text} from 'react-native-paper';
+import {Button, TextInput, Text, Card, Avatar} from 'react-native-paper';
 
 const LoginScreen = props => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+
+  const handleLoginClick = () => {
+    Navigation.setRoot({
+      root: {
+        component: {
+          name: 'Home',
+        },
+      },
+    });
+  };
+
   return (
     <View style={styles.container}>
+      {/* source={require('../assets/logo.png')} */}
+      {/* <Image style={styles.logo} /> */}
+      <Text
+        style={styles.logo}
+        theme={{
+          colors: {
+            text: '#ffffff',
+          },
+        }}>
+        BeeControl
+      </Text>
       <TextInput
         style={styles.username}
         label="Email"
         value={username}
+        theme={{
+          colors: {
+            text: '#ffffff',
+            accent: '#ffffff',
+            primary: '#ffffff',
+            placeholder: '#ffffff',
+            background: 'transparent',
+          },
+        }}
+        underlineColor="#ffffff"
         onChangeText={username => setUsername(username)}
+        dense
       />
 
       <TextInput
         style={styles.password}
+        theme={{
+          colors: {
+            text: '#ffffff',
+            accent: '#ffffff',
+            primary: '#ffffff',
+            placeholder: '#ffffff',
+            background: 'transparent',
+          },
+        }}
+        underlineColor="#ffffff"
         label="Password"
         value={password}
         onChangeText={password => setPassword(password)}
+        dense
         secureTextEntry={true}
       />
 
       <Button
         style={styles.login}
-        icon="login"
         mode="contained"
-        onPress={() => Navigation.setRoot(mainRoot)}>
+        dark
+        color="#ffb300"
+        onPress={handleLoginClick}>
         Login
       </Button>
 
       <Button
         style={styles.register}
         mode="text"
+        dark
+        theme={{colors: {text: '#FFFFFF', primary: '#FFFFFF'}}}
         onPress={() =>
           Navigation.push(props.componentId, {
             component: {
@@ -41,7 +88,7 @@ const LoginScreen = props => {
             },
           })
         }>
-        Register
+        No account yet? Create one
       </Button>
     </View>
   );
@@ -49,72 +96,85 @@ const LoginScreen = props => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
     display: 'flex',
-    paddingTop: 10,
-    padding: 15,
-    backgroundColor: 'whitesmoke',
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingVertical: 24,
+    backgroundColor: '#fdd835',
   },
   username: {
-    marginTop: 'auto',
-    marginBottom: 15,
+    backgroundColor: 'transparent',
+    marginBottom: 16,
+    paddingHorizontal: 0,
+    color: '#ffb300',
   },
   password: {
-    marginBottom: 15,
+    backgroundColor: 'transparent',
+    marginBottom: 16,
+    paddingHorizontal: 0,
   },
   login: {
-    marginBottom: 'auto',
+    marginTop: 16,
+    // marginBottom: 'auto',
   },
   register: {
+    marginTop: 24,
+    marginBottom: 'auto',
+    // alignSelf: 'flex-end',
+  },
+  logo: {
     marginTop: 'auto',
-    alignSelf: 'flex-end',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: 64,
+    fontSize: 40,
+    fontWeight: 'bold',
   },
 });
 
-const mainRoot = {
-  root: {
-    bottomTabs: {
-      children: [
-        {
-          stack: {
-            children: [
-              {
-                component: {
-                  name: 'Home',
-                },
-              },
-            ],
-            options: {
-              bottomTab: {
-                iconColor: 'indigo',
-                textColor: 'indigo',
-                icon: require('../assets/home.png'),
-              },
-            },
-          },
-        },
-        {
-          stack: {
-            children: [
-              {
-                component: {
-                  name: 'Settings',
-                },
-              },
-            ],
-            options: {
-              bottomTab: {
-                iconColor: 'indigo',
-                textColor: 'indigo',
-                icon: require('../assets/cog.png'),
-              },
-            },
-          },
-        },
-      ],
-    },
-  },
-};
+// const mainRoot = {
+//   root: {
+//     bottomTabs: {
+//       children: [
+//         {
+//           stack: {
+//             children: [
+//               {
+//                 component: {
+//                   name: 'Home',
+//                 },
+//               },
+//             ],
+//             options: {
+//               bottomTab: {
+//                 iconColor: '#fdd835',
+//                 // textColor: '#fdd835',
+//                 icon: require('../assets/home.png'),
+//               },
+//             },
+//           },
+//         },
+//         {
+//           stack: {
+//             children: [
+//               {
+//                 component: {
+//                   name: 'Settings',
+//                 },
+//               },
+//             ],
+//             options: {
+//               bottomTab: {
+//                 iconColor: '#fdd835',
+//                 // textColor: '#fdd835',
+//                 icon: require('../assets/cog.png'),
+//               },
+//             },
+//           },
+//         },
+//       ],
+//     },
+//   },
+// };
 
 export default LoginScreen;
