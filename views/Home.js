@@ -4,18 +4,27 @@ import {Navigation} from 'react-native-navigation';
 import {
   List,
   Banner,
-  Avatar,
-  Button,
   Card,
   Title,
-  Paragraph,
+  Divider,
+  FAB,
+  Avatar,
+  IconButton,
+  TouchableRipple,
 } from 'react-native-paper';
 
 const HomeScreen = props => {
-  const [expanded, setExpanded] = React.useState(true);
   const [visible, setVisible] = React.useState(true);
 
-  const handlePress = () => setExpanded(!expanded);
+  const handleBannerClick = () => {
+    setVisible(false);
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'DeviceDetails',
+      },
+    });
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -24,65 +33,142 @@ const HomeScreen = props => {
           actions={[
             {
               label: 'Learn more',
-              onPress: () => setVisible(false),
+              onPress: () => handleBannerClick(),
             },
           ]}
           icon={({size}) => (
-            <Image
-              source={{
-                uri:
-                  'https://avatars3.githubusercontent.com/u/17571969?s=400&v=4',
-              }}
-              style={{
-                width: size,
-                height: size,
-              }}
-            />
+            <Avatar.Icon {...props} size={42} icon="beehive-outline" />
           )}>
           There was a problem with BeeHive #1
         </Banner>
 
         <Card style={styles.card}>
-          <Card.Content>
-            <Title>BeeHive #1</Title>
-          </Card.Content>
-          <List.Item
-            title="First Item"
-            description="Item description"
-            left={props => <List.Icon {...props} icon="folder" />}
+          <Card.Title
+            title="BeeHive #1"
+            left={props => <Avatar.Icon {...props} icon="beehive-outline" />}
           />
-          <List.Item
-            title="First Item"
-            description="Item description"
-            left={props => <List.Icon {...props} icon="folder" />}
-          />
-          <List.Item
-            title="First Item"
-            description="Item description"
-            left={props => <List.Icon {...props} icon="folder" />}
-          />
+          <Divider />
+          <TouchableRipple
+            onPress={() =>
+              Navigation.push(props.componentId, {
+                component: {
+                  name: 'DeviceDetails',
+                },
+              })
+            }
+            rippleColor="rgba(0, 0, 0, .32)">
+            <List.Item
+              title="First Item"
+              description="Item description"
+              left={props => <List.Icon {...props} large icon="bee" />}
+              right={props => <List.Icon {...props} icon="eye" />}
+            />
+          </TouchableRipple>
+          <Divider />
+          <TouchableRipple
+            onPress={() =>
+              Navigation.push(props.componentId, {
+                component: {
+                  name: 'DeviceDetails',
+                },
+              })
+            }
+            rippleColor="rgba(0, 0, 0, .32)">
+            <List.Item
+              title="First Item"
+              description="Item description"
+              left={props => <List.Icon {...props} large icon="bee" />}
+              right={props => <List.Icon {...props} icon="eye" />}
+            />
+          </TouchableRipple>
+          <Divider />
+          <TouchableRipple
+            onPress={() =>
+              Navigation.push(props.componentId, {
+                component: {
+                  name: 'DeviceDetails',
+                },
+              })
+            }
+            rippleColor="rgba(0, 0, 0, .32)">
+            <List.Item
+              title="First Item"
+              description="Item description"
+              left={props => <List.Icon {...props} large icon="bee" />}
+              right={props => <List.Icon {...props} icon="eye" />}
+            />
+          </TouchableRipple>
         </Card>
         <Card style={styles.lastCard}>
-          <Card.Content>
-            <Title>BeeHive #2</Title>
-          </Card.Content>
-          <List.Item
-            title="First Item"
-            description="Item description"
-            left={props => <List.Icon {...props} icon="folder" />}
+          <Card.Title
+            title="BeeHive #2"
+            left={props => <Avatar.Icon {...props} icon="beehive-outline" />}
           />
-          <List.Item
-            title="First Item"
-            description="Item description"
-            left={props => <List.Icon {...props} icon="folder" />}
-          />
-          <List.Item
-            title="First Item"
-            description="Item description"
-            left={props => <List.Icon {...props} icon="folder" />}
-          />
+          <Divider />
+          <TouchableRipple
+            onPress={() =>
+              Navigation.push(props.componentId, {
+                component: {
+                  name: 'DeviceDetails',
+                },
+              })
+            }
+            rippleColor="rgba(0, 0, 0, .32)">
+            <List.Item
+              title="First Item"
+              description="Item description"
+              left={props => <List.Icon {...props} large icon="bee" />}
+              right={props => <List.Icon {...props} icon="eye" />}
+            />
+          </TouchableRipple>
+          <Divider />
+          <TouchableRipple
+            onPress={() =>
+              Navigation.push(props.componentId, {
+                component: {
+                  name: 'DeviceDetails',
+                },
+              })
+            }
+            rippleColor="rgba(0, 0, 0, .32)">
+            <List.Item
+              title="First Item"
+              description="Item description"
+              left={props => <List.Icon {...props} large icon="bee" />}
+              right={props => <List.Icon {...props} icon="eye" />}
+            />
+          </TouchableRipple>
+          <Divider />
+          <TouchableRipple
+            onPress={() =>
+              Navigation.push(props.componentId, {
+                component: {
+                  name: 'DeviceDetails',
+                },
+              })
+            }
+            rippleColor="rgba(0, 0, 0, .32)">
+            <List.Item
+              title="First Item"
+              description="Item description"
+              left={props => <List.Icon {...props} large icon="bee" />}
+              right={props => <List.Icon {...props} icon="eye" />}
+            />
+          </TouchableRipple>
         </Card>
       </ScrollView>
+      <FAB
+        dark
+        style={styles.fab}
+        icon="plus"
+        onPress={() =>
+          Navigation.push(props.componentId, {
+            component: {
+              name: 'DeviceAddEdit',
+            },
+          })
+        }
+      />
     </View>
   );
 };
@@ -106,10 +192,19 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginHorizontal: 15,
   },
+  cardContent: {
+    marginBottom: 20,
+  },
   lastCard: {
     marginTop: 15,
     marginHorizontal: 15,
     marginBottom: 50,
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
   },
 });
 

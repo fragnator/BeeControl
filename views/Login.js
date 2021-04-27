@@ -85,11 +85,13 @@ const mainRoot = {
                 },
               },
             ],
-            // options: {
-            //   bottomTab: {
-            //     icon: require('./home.png'), //TODO: find vector icon
-            //   },
-            // },
+            options: {
+              bottomTab: {
+                iconColor: 'indigo',
+                textColor: 'indigo',
+                icon: require('../assets/home.png'),
+              },
+            },
           },
         },
         {
@@ -101,11 +103,13 @@ const mainRoot = {
                 },
               },
             ],
-            // options: {
-            //   bottomTab: {
-            //     icon: require('./settings.png'), //TODO: find vector icon
-            //   },
-            // },
+            options: {
+              bottomTab: {
+                iconColor: 'indigo',
+                textColor: 'indigo',
+                icon: require('../assets/cog.png'),
+              },
+            },
           },
         },
       ],

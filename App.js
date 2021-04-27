@@ -5,11 +5,15 @@ import LoginScreen from './views/Login';
 import HomeScreen from './views/Home';
 import SettingsScreen from './views/Settings';
 import RegisterScreen from './views/Register';
+import DeviceAddEditScreen from './views/DeviceAddEdit';
+import DeviceDetailsScreen from './views/DeviceDetails';
 
 Navigation.registerComponent('Login', () => LoginScreen);
 Navigation.registerComponent('Home', () => HomeScreen);
 Navigation.registerComponent('Settings', () => SettingsScreen);
 Navigation.registerComponent('Register', () => RegisterScreen);
+Navigation.registerComponent('DeviceAddEdit', () => DeviceAddEditScreen);
+Navigation.registerComponent('DeviceDetails', () => DeviceDetailsScreen);
 
 const loginRoot = {
   root: {
@@ -35,8 +39,8 @@ Navigation.setDefaultOptions({
     },
   },
   bottomTab: {
-    fontSize: 14,
-    selectedFontSize: 14,
+    fontSize: 12,
+    selectedFontSize: 12,
   },
 });
 
