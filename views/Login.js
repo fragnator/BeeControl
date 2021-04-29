@@ -8,20 +8,24 @@ const LoginScreen = props => {
   const [password, setPassword] = React.useState('');
 
   const handleLoginClick = () => {
-    Navigation.setRoot({
-      root: {
-        component: {
-          name: 'Home',
-        },
-      },
-    });
+    Navigation.setRoot(
+      // root: {
+      //   component: {
+      //     name: 'Home',
+      //   },
+      // },
+      mainRoot,
+    );
   };
 
   return (
     <View style={styles.container}>
-      {/* source={require('../assets/logo.png')} */}
-      {/* <Image style={styles.logo} /> */}
-      <Text
+      <Image
+        resizeMode="contain"
+        style={styles.logo}
+        source={require('../assets/logo.png')}
+      />
+      {/* <Text
         style={styles.logo}
         theme={{
           colors: {
@@ -29,7 +33,7 @@ const LoginScreen = props => {
           },
         }}>
         BeeControl
-      </Text>
+      </Text> */}
       <TextInput
         style={styles.username}
         label="Email"
@@ -126,55 +130,54 @@ const styles = StyleSheet.create({
     marginTop: 'auto',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: 64,
-    fontSize: 40,
-    fontWeight: 'bold',
+    maxWidth: 230,
+    maxHeight: 230,
   },
 });
 
-// const mainRoot = {
-//   root: {
-//     bottomTabs: {
-//       children: [
-//         {
-//           stack: {
-//             children: [
-//               {
-//                 component: {
-//                   name: 'Home',
-//                 },
-//               },
-//             ],
-//             options: {
-//               bottomTab: {
-//                 iconColor: '#fdd835',
-//                 // textColor: '#fdd835',
-//                 icon: require('../assets/home.png'),
-//               },
-//             },
-//           },
-//         },
-//         {
-//           stack: {
-//             children: [
-//               {
-//                 component: {
-//                   name: 'Settings',
-//                 },
-//               },
-//             ],
-//             options: {
-//               bottomTab: {
-//                 iconColor: '#fdd835',
-//                 // textColor: '#fdd835',
-//                 icon: require('../assets/cog.png'),
-//               },
-//             },
-//           },
-//         },
-//       ],
-//     },
-//   },
-// };
+const mainRoot = {
+  root: {
+    bottomTabs: {
+      children: [
+        {
+          stack: {
+            children: [
+              {
+                component: {
+                  name: 'Home',
+                },
+              },
+            ],
+            options: {
+              bottomTab: {
+                iconColor: '#fdd835',
+                // textColor: '#fdd835',
+                icon: require('../assets/home.png'),
+              },
+            },
+          },
+        },
+        {
+          stack: {
+            children: [
+              {
+                component: {
+                  name: 'Settings',
+                },
+              },
+            ],
+            options: {
+              bottomTab: {
+                iconColor: '#fdd835',
+                // textColor: '#fdd835',
+                icon: require('../assets/cog.png'),
+              },
+            },
+          },
+        },
+      ],
+    },
+  },
+};
 
 export default LoginScreen;

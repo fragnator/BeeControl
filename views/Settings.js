@@ -16,9 +16,9 @@ SettingsScreen.options = {
       text: 'Settings',
     },
   },
-  bottomTab: {
-    text: 'Settings',
-  },
+  // bottomTab: {
+  //   text: 'Settings',
+  // },
 };
 
 const styles = StyleSheet.create({

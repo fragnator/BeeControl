@@ -27,7 +27,7 @@ Navigation.setDefaultOptions({
     background: {
       color: '#fdd835',
     },
-    visible: false,
+    visible: true,
   },
 });
 

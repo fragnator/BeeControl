@@ -1,22 +1,20 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {Button, TextInput, Text} from 'react-native-paper';
 
 const RegisterScreen = props => {
   const [username, setUsername] = React.useState('');
+  const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [rePassword, setRePassword] = React.useState('');
   return (
     <View style={styles.container}>
-      <Text
+      <Image
+        resizeMode="contain"
         style={styles.logo}
-        theme={{
-          colors: {
-            text: '#ffffff',
-          },
-        }}>
-        Register
-      </Text>
+        source={require('../assets/logo.png')}
+      />
 
       <TextInput
         style={styles.username}
@@ -39,7 +37,7 @@ const RegisterScreen = props => {
       <TextInput
         style={styles.password}
         label="Email"
-        value={username}
+        value={email}
         theme={{
           colors: {
             text: '#ffffff',
@@ -50,7 +48,7 @@ const RegisterScreen = props => {
           },
         }}
         underlineColor="#ffffff"
-        onChangeText={username => setUsername(username)}
+        onChangeText={email => setEmail(email)}
         dense
       />
 
@@ -76,7 +74,7 @@ const RegisterScreen = props => {
       <TextInput
         style={styles.password}
         label="Re-type password"
-        value={password}
+        value={rePassword}
         theme={{
           colors: {
             text: '#ffffff',
@@ -87,7 +85,7 @@ const RegisterScreen = props => {
           },
         }}
         underlineColor="#ffffff"
-        onChangeText={password => setPassword(password)}
+        onChangeText={rePassword => setRePassword(rePassword)}
         dense
         secureTextEntry={true}
       />
@@ -158,9 +156,8 @@ const styles = StyleSheet.create({
     marginTop: 'auto',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: 64,
-    fontSize: 40,
-    fontWeight: 'bold',
+    maxWidth: 150,
+    maxHeight: 150,
   },
 });
 

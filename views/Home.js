@@ -13,6 +13,12 @@ import {
   TouchableRipple,
 } from 'react-native-paper';
 
+//TODO:
+//ODSTRANI bottomTab
+//DODAJ na topTab ikono tri pike in odjava;
+//DODAJ DeviceAddEdit save akcijo in delete
+//DODAJ DeviceDetails dodaj sekcijo opis
+
 const HomeScreen = props => {
   const [visible, setVisible] = React.useState(true);
 
@@ -38,9 +44,9 @@ const HomeScreen = props => {
       <ScrollView>
         <Banner
           visible={visible}
-          theme={{colors: {surface: 'blue', primary: '#fdd835', accent: 'red'}}}
           actions={[
             {
+              color: '#fdd835',
               label: 'Learn more',
               onPress: () => handleBannerClick(),
             },
@@ -80,10 +86,10 @@ const HomeScreen = props => {
             }
             rippleColor="rgba(0, 0, 0, .32)">
             <List.Item
-              title="First Item"
-              description="Item description"
+              title="Device 1"
+              description="Device description"
               left={props => <List.Icon {...props} large icon="bee" />}
-              right={props => <List.Icon {...props} icon="eye" />}
+              right={props => <List.Icon {...props} icon="information" />}
             />
           </TouchableRipple>
           <Divider />
@@ -97,10 +103,10 @@ const HomeScreen = props => {
             }
             rippleColor="rgba(0, 0, 0, .32)">
             <List.Item
-              title="First Item"
-              description="Item description"
+              title="Device 2"
+              description="Device description"
               left={props => <List.Icon {...props} large icon="bee" />}
-              right={props => <List.Icon {...props} icon="eye" />}
+              right={props => <List.Icon {...props} icon="information" />}
             />
           </TouchableRipple>
           <Divider />
@@ -114,10 +120,10 @@ const HomeScreen = props => {
             }
             rippleColor="rgba(0, 0, 0, .32)">
             <List.Item
-              title="First Item"
-              description="Item description"
+              title="Device 3"
+              description="Device description"
               left={props => <List.Icon {...props} large icon="bee" />}
-              right={props => <List.Icon {...props} icon="eye" />}
+              right={props => <List.Icon {...props} icon="information" />}
             />
           </TouchableRipple>
         </Card>
@@ -144,10 +150,10 @@ const HomeScreen = props => {
             }
             rippleColor="rgba(0, 0, 0, .32)">
             <List.Item
-              title="First Item"
-              description="Item description"
+              title="Device 1"
+              description="Device description"
               left={props => <List.Icon {...props} large icon="bee" />}
-              right={props => <List.Icon {...props} icon="eye" />}
+              right={props => <List.Icon {...props} icon="information" />}
             />
           </TouchableRipple>
           <Divider />
@@ -161,10 +167,10 @@ const HomeScreen = props => {
             }
             rippleColor="rgba(0, 0, 0, .32)">
             <List.Item
-              title="First Item"
-              description="Item description"
+              title="Device 2"
+              description="Device description"
               left={props => <List.Icon {...props} large icon="bee" />}
-              right={props => <List.Icon {...props} icon="eye" />}
+              right={props => <List.Icon {...props} icon="information" />}
             />
           </TouchableRipple>
           <Divider />
@@ -178,10 +184,10 @@ const HomeScreen = props => {
             }
             rippleColor="rgba(0, 0, 0, .32)">
             <List.Item
-              title="First Item"
+              title="Device 3"
               description="Item description"
               left={props => <List.Icon {...props} large icon="bee" />}
-              right={props => <List.Icon {...props} icon="eye" />}
+              right={props => <List.Icon {...props} icon="information" />}
             />
           </TouchableRipple>
         </Card>
@@ -209,9 +215,9 @@ HomeScreen.options = {
       text: 'Home',
     },
   },
-  bottomTab: {
-    text: 'Home',
-  },
+  // bottomTab: {
+  //   text: 'Home',
+  // },
 };
 
 const styles = StyleSheet.create({
