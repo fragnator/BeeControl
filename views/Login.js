@@ -1,7 +1,7 @@
-import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import {Navigation} from 'react-native-navigation';
-import {Button, TextInput, Text, Card, Avatar} from 'react-native-paper';
+import React, { useEffect } from 'react';
+import { View, StyleSheet, Image } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import { Button, TextInput, Text, Card, Avatar } from 'react-native-paper';
 
 const LoginScreen = props => {
   const [username, setUsername] = React.useState('');
@@ -17,6 +17,14 @@ const LoginScreen = props => {
       mainRoot,
     );
   };
+
+  useEffect(() => {
+    Navigation.mergeOptions(props.componentId, {
+      topBar: {
+        visible: false,
+      },
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -84,7 +92,7 @@ const LoginScreen = props => {
         style={styles.register}
         mode="text"
         dark
-        theme={{colors: {text: '#FFFFFF', primary: '#FFFFFF'}}}
+        theme={{ colors: { text: '#FFFFFF', primary: '#FFFFFF' } }}
         onPress={() =>
           Navigation.push(props.componentId, {
             component: {
@@ -137,47 +145,17 @@ const styles = StyleSheet.create({
 
 const mainRoot = {
   root: {
-    bottomTabs: {
+    stack: {
       children: [
         {
-          stack: {
-            children: [
-              {
-                component: {
-                  name: 'Home',
-                },
-              },
-            ],
-            options: {
-              bottomTab: {
-                iconColor: '#fdd835',
-                // textColor: '#fdd835',
-                icon: require('../assets/home.png'),
-              },
-            },
-          },
-        },
-        {
-          stack: {
-            children: [
-              {
-                component: {
-                  name: 'Settings',
-                },
-              },
-            ],
-            options: {
-              bottomTab: {
-                iconColor: '#fdd835',
-                // textColor: '#fdd835',
-                icon: require('../assets/cog.png'),
-              },
-            },
-          },
-        },
-      ],
-    },
-  },
+          component: {
+            name: 'Home'
+          }
+        }
+      ]
+    }
+  }
 };
+
 
 export default LoginScreen;

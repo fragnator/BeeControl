@@ -1,4 +1,4 @@
-import {Navigation} from 'react-native-navigation';
+import { Navigation } from 'react-native-navigation';
 import LoginScreen from './views/Login';
 import HomeScreen from './views/Home';
 import SettingsScreen from './views/Settings';
@@ -31,14 +31,5 @@ Navigation.setDefaultOptions({
   },
 });
 
-Navigation.events().registerAppLaunchedListener(async () => {
-  Navigation.setRoot({
-    root: {
-      component: {
-        name: 'Login',
-      },
-    },
-  });
-});
 
 export default LoginScreen;

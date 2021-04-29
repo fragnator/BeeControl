@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Navigation} from 'react-native-navigation';
+import { View, StyleSheet } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import {
   Button,
   TextInput,
@@ -24,14 +24,25 @@ const DeviceAddEditScreen = props => {
 
   const hideDialog = () => setVisible(false);
 
+  const handleLoginClick = () => {
+    Navigation.setRoot(
+      // root: {
+      //   component: {
+      //     name: 'Home',
+      //   },
+      // },
+      mainRoot,
+    );
+  };
+
   return (
     <Provider>
       <View style={styles.container}>
         <Paragraph>Information:</Paragraph>
         <Card style={styles.card}>
-          <View style={{marginHorizontal: 16}}>
+          <View style={{ marginHorizontal: 16 }}>
             <TextInput
-              style={{marginTop: 6, marginBottom: 16}}
+              style={{ marginTop: 6, marginBottom: 16 }}
               theme={{
                 colors: {
                   text: '#fdd835',
@@ -48,7 +59,7 @@ const DeviceAddEditScreen = props => {
               dense
             />
             <TextInput
-              style={{marginBottom: 24}}
+              style={{ marginBottom: 24 }}
               theme={{
                 colors: {
                   text: '#fdd835',
@@ -67,8 +78,8 @@ const DeviceAddEditScreen = props => {
           </View>
         </Card>
 
-        <Paragraph style={{marginTop: 16, marginBottom: 16}}>Group:</Paragraph>
-        <Card style={{paddingTop: 10}}>
+        <Paragraph style={{ marginTop: 16, marginBottom: 16 }}>Group:</Paragraph>
+        <Card style={{ paddingTop: 10 }}>
           <RadioButton.Group
             style={styles.radioButton}
             onValueChange={value => setValue(value)}
@@ -93,7 +104,7 @@ const DeviceAddEditScreen = props => {
               left={props => (
                 <List.Icon
                   {...props}
-                  style={{marginRight: 5}}
+                  style={{ marginRight: 5 }}
                   icon="plus-circle"
                 />
               )}
@@ -121,7 +132,7 @@ const DeviceAddEditScreen = props => {
                 <Dialog.Title>New Group</Dialog.Title>
                 <Dialog.Content>
                   <TextInput
-                    style={{marginBottom: 16}}
+                    style={{ marginBottom: 16 }}
                     theme={{
                       colors: {
                         text: '#fdd835',
@@ -148,6 +159,17 @@ const DeviceAddEditScreen = props => {
           </View>
         </Card>
       </View>
+      <Card elevation={12} style={{ alignSelf: "flex-end", height: 64 }}>
+        <View style={{ flexDirection: 'row', justifyContent: "flex-end", width: "100%", paddingTop: 12 }}>
+          {/* <Button>Cancel</Button> */}
+          <Button
+            color="#fdd835"
+            style={{ marginRight: 16 }}
+            onPress={handleLoginClick}>
+            Save
+          </Button>
+        </View>
+      </Card>
     </Provider>
   );
 };
@@ -158,6 +180,20 @@ DeviceAddEditScreen.options = {
       text: 'New Device',
     },
   },
+};
+
+const mainRoot = {
+  root: {
+    stack: {
+      children: [
+        {
+          component: {
+            name: 'Home'
+          }
+        }
+      ]
+    }
+  }
 };
 
 const styles = StyleSheet.create({
