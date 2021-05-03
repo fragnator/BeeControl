@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import {View, StyleSheet} from 'react-native';
+import {Navigation} from 'react-native-navigation';
 import {
   Button,
   TextInput,
@@ -18,21 +18,28 @@ import {
 
 const DeviceAddEditScreen = props => {
   const [name, setName] = React.useState('');
+  const [description, setDescription] = React.useState('');
+  const [group, setGroup] = React.useState('');
   const [value, setValue] = React.useState('first');
   const [visible, setVisible] = React.useState(false);
   const showDialog = () => setVisible(true);
 
   const hideDialog = () => setVisible(false);
 
-  const handleLoginClick = () => {
-    Navigation.setRoot(
-      // root: {
-      //   component: {
-      //     name: 'Home',
-      //   },
-      // },
-      mainRoot,
-    );
+  const handleSaveClick = () => {
+    Navigation.setRoot({
+      root: {
+        stack: {
+          children: [
+            {
+              component: {
+                name: 'Home',
+              },
+            },
+          ],
+        },
+      },
+    });
   };
 
   return (
@@ -40,9 +47,9 @@ const DeviceAddEditScreen = props => {
       <View style={styles.container}>
         <Paragraph>Information:</Paragraph>
         <Card style={styles.card}>
-          <View style={{ marginHorizontal: 16 }}>
+          <View style={{marginHorizontal: 16}}>
             <TextInput
-              style={{ marginTop: 6, marginBottom: 16 }}
+              style={{marginTop: 6, marginBottom: 16}}
               theme={{
                 colors: {
                   text: '#fdd835',
@@ -59,7 +66,7 @@ const DeviceAddEditScreen = props => {
               dense
             />
             <TextInput
-              style={{ marginBottom: 24 }}
+              style={{marginBottom: 24}}
               theme={{
                 colors: {
                   text: '#fdd835',
@@ -71,15 +78,15 @@ const DeviceAddEditScreen = props => {
               }}
               underlineColor="#fdd835"
               label="Description"
-              value={name}
-              onChangeText={name => setName(name)}
+              value={description}
+              onChangeText={description => setDescription(description)}
               dense
             />
           </View>
         </Card>
 
-        <Paragraph style={{ marginTop: 16, marginBottom: 16 }}>Group:</Paragraph>
-        <Card style={{ paddingTop: 10 }}>
+        <Paragraph style={{marginTop: 16, marginBottom: 16}}>Group:</Paragraph>
+        <Card style={{paddingTop: 10}}>
           <RadioButton.Group
             style={styles.radioButton}
             onValueChange={value => setValue(value)}
@@ -104,35 +111,19 @@ const DeviceAddEditScreen = props => {
               left={props => (
                 <List.Icon
                   {...props}
-                  style={{ marginRight: 5 }}
+                  style={{marginRight: 5}}
                   icon="plus-circle"
                 />
               )}
             />
           </TouchableRipple>
-
-          {/* <View style={{flexDirection: 'row'}}>
-            <Button
-              style={styles.addButton}
-              icon="plus-circle"
-              mode="contained"
-              onPress={() =>
-                Navigation.push(props.componentId, {
-                  component: {
-                    name: 'Home',
-                  },
-                })
-              }>
-              Add Device
-            </Button>
-          </View> */}
           <View>
             <Portal>
               <Dialog visible={visible} onDismiss={hideDialog}>
                 <Dialog.Title>New Group</Dialog.Title>
                 <Dialog.Content>
                   <TextInput
-                    style={{ marginBottom: 16 }}
+                    style={{marginBottom: 16}}
                     theme={{
                       colors: {
                         text: '#fdd835',
@@ -144,8 +135,8 @@ const DeviceAddEditScreen = props => {
                     }}
                     underlineColor="#fdd835"
                     label="Name"
-                    value={name}
-                    onChangeText={name => setName(name)}
+                    value={group}
+                    onChangeText={group => setGroup(group)}
                     dense
                   />
                 </Dialog.Content>
@@ -159,13 +150,19 @@ const DeviceAddEditScreen = props => {
           </View>
         </Card>
       </View>
-      <Card elevation={12} style={{ alignSelf: "flex-end", height: 64 }}>
-        <View style={{ flexDirection: 'row', justifyContent: "flex-end", width: "100%", paddingTop: 12 }}>
+      <Card elevation={12} style={{alignSelf: 'flex-end', height: 50}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            width: '100%',
+            marginTop: 6,
+          }}>
           {/* <Button>Cancel</Button> */}
           <Button
             color="#fdd835"
-            style={{ marginRight: 16 }}
-            onPress={handleLoginClick}>
+            style={{marginRight: 16}}
+            onPress={handleSaveClick}>
             Save
           </Button>
         </View>
@@ -180,20 +177,6 @@ DeviceAddEditScreen.options = {
       text: 'New Device',
     },
   },
-};
-
-const mainRoot = {
-  root: {
-    stack: {
-      children: [
-        {
-          component: {
-            name: 'Home'
-          }
-        }
-      ]
-    }
-  }
 };
 
 const styles = StyleSheet.create({

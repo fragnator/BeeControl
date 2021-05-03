@@ -15,6 +15,10 @@ import {
 import {LineChart} from 'react-native-chart-kit';
 
 const DeviceDetails = props => {
+  const [description, setDescription] = React.useState(
+    'Checkout beehive tomorrow',
+  );
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -134,7 +138,7 @@ const DeviceDetails = props => {
           </Card>
         </View>
 
-        <Card style={styles.card}>
+        <Card>
           <View style={{flexDirection: 'row'}}>
             <View style={{flexDirection: 'row'}}>
               <IconButton
@@ -154,7 +158,7 @@ const DeviceDetails = props => {
             </View>
           </View>
 
-          <View style={{marginTop: 16, marginBottom: 16}}>
+          <View style={{marginTop: 16}}>
             <LineChart
               data={{
                 labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -195,6 +199,29 @@ const DeviceDetails = props => {
                 marginRight: 10,
                 marginLeft: 10,
               }}
+            />
+          </View>
+        </Card>
+
+        <Card style={{marginTop: 16, marginBottom: 50}}>
+          <View>
+            <TextInput
+              theme={{
+                colors: {
+                  text: '#fdd835',
+                  accent: '#fdd835',
+                  primary: '#fdd835',
+                  placeholder: '#fdd835',
+                  background: 'transparent',
+                },
+              }}
+              style={{margin: 16}}
+              underlineColor="#fdd835"
+              label="Description"
+              value={description}
+              onChangeText={description => setDescription(description)}
+              dense
+              numberOfLines={10}
             />
           </View>
         </Card>

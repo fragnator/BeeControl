@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import React, {useEffect} from 'react';
+import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {Navigation} from 'react-native-navigation';
 import {
   List,
   Banner,
@@ -15,8 +15,6 @@ import {
 
 //TODO:
 //DODAJ na topTab ikono tri pike in odjava;
-//DODAJ DeviceDetails dodaj sekcijo opis
-//ikona aplikacije 
 
 const HomeScreen = props => {
   const [visible, setVisible] = React.useState(true);
@@ -50,11 +48,11 @@ const HomeScreen = props => {
               onPress: () => handleBannerClick(),
             },
           ]}
-          icon={({ size }) => (
+          icon={({size}) => (
             <Avatar.Icon
               {...props}
               color="#ffffff"
-              style={{ backgroundColor: '#fdd835' }}
+              style={{backgroundColor: '#fdd835'}}
               size={42}
               icon="beehive-outline"
             />
@@ -68,7 +66,7 @@ const HomeScreen = props => {
             left={props => (
               <Avatar.Icon
                 color="#ffffff"
-                style={{ backgroundColor: '#fdd835' }}
+                style={{backgroundColor: '#fdd835'}}
                 {...props}
                 icon="beehive-outline"
               />
@@ -132,7 +130,7 @@ const HomeScreen = props => {
             left={props => (
               <Avatar.Icon
                 color="#ffffff"
-                style={{ backgroundColor: '#fdd835' }}
+                style={{backgroundColor: '#fdd835'}}
                 {...props}
                 icon="beehive-outline"
               />
@@ -213,17 +211,16 @@ HomeScreen.options = {
     title: {
       text: 'Home',
     },
-
-
+    rightButtons: [
+      {
+        component: {name: 'NavigationButtonComponent'},
+      },
+    ],
   },
-  // bottomTab: {
-  //   text: 'Home',
-  // },
 };
 
 const styles = StyleSheet.create({
   container: {
-
     height: '100%',
     backgroundColor: 'whitesmoke',
   },
