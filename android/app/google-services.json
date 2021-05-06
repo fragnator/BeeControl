@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1034850873344",
+    "project_id": "beecontrol-49bbe",
+    "storage_bucket": "beecontrol-49bbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034850873344:android:5b9c3a53c2fa2e624168e5",
+        "android_client_info": {
+          "package_name": "com.beecontrol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034850873344-9vnegcfultd8hq506ptr9eio5f41cc6s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.beecontrol",
+            "certificate_hash": "146d5387580ad896f07d5f77e16ceb5a667b7d62"
+          }
+        },
+        {
+          "client_id": "1034850873344-7imfu15til5qh4aoiinllntf04g0lfbm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBITTCNQqlvw86RywqvmyxIsldsyc3lDmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034850873344-7imfu15til5qh4aoiinllntf04g0lfbm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,22 +1,13 @@
-import React, { useEffect } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-import { Navigation } from 'react-native-navigation';
-import { Button, TextInput, Text, Card, Avatar } from 'react-native-paper';
+import React, {useEffect} from 'react';
+import {View, StyleSheet, Image} from 'react-native';
+import {Navigation} from 'react-native-navigation';
+import {Button, TextInput, Text, Card, Avatar} from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
 
 const LoginScreen = props => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-
-  const handleLoginClick = () => {
-    Navigation.setRoot(
-      // root: {
-      //   component: {
-      //     name: 'Home',
-      //   },
-      // },
-      mainRoot,
-    );
-  };
+  const [error, setError] = React.useState(false);
 
   useEffect(() => {
     Navigation.mergeOptions(props.componentId, {
@@ -26,6 +17,23 @@ const LoginScreen = props => {
     });
   }, []);
 
+  const handleLoginClick = () => {
+    // if (username.length === 0 || password.length === 0) {
+    //   setError(true);
+    //   return;
+    // }
+
+    auth()
+      .signInWithEmailAndPassword('kc7947@student.uni-lj.si', 'debil123')
+      .then(() => {
+        Navigation.setRoot(mainRoot);
+      })
+      .catch(error => {
+        setError(true);
+        console.error(error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -33,15 +41,19 @@ const LoginScreen = props => {
         style={styles.logo}
         source={require('../assets/logo.png')}
       />
-      {/* <Text
-        style={styles.logo}
-        theme={{
-          colors: {
-            text: '#ffffff',
-          },
-        }}>
-        BeeControl
-      </Text> */}
+
+      {error ? (
+        <Text
+          theme={{
+            colors: {
+              text: '#ffffff',
+            },
+          }}
+          style={{alignSelf: 'center', marginVertical: 16}}>
+          {'An error has occurred'}
+        </Text>
+      ) : null}
+
       <TextInput
         style={styles.username}
         label="Email"
@@ -92,7 +104,7 @@ const LoginScreen = props => {
         style={styles.register}
         mode="text"
         dark
-        theme={{ colors: { text: '#FFFFFF', primary: '#FFFFFF' } }}
+        theme={{colors: {text: '#FFFFFF', primary: '#FFFFFF'}}}
         onPress={() =>
           Navigation.push(props.componentId, {
             component: {
@@ -149,13 +161,12 @@ const mainRoot = {
       children: [
         {
           component: {
-            name: 'Home'
-          }
-        }
-      ]
-    }
-  }
+            name: 'Home',
+          },
+        },
+      ],
+    },
+  },
 };
-
 
 export default LoginScreen;

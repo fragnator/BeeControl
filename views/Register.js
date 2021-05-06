@@ -2,12 +2,44 @@ import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {Button, TextInput, Text} from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
 
 const RegisterScreen = props => {
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [rePassword, setRePassword] = React.useState('');
+  const [error, setError] = React.useState(false);
+
+  const handleRegister = () => {
+    if (
+      username.length === 0 ||
+      password.length === 0 ||
+      rePassword.length === 0
+    ) {
+      console.log('111');
+      setError(true);
+      return;
+    }
+
+    if (password !== rePassword) {
+      console.log('222');
+      setError(true);
+      return;
+    }
+
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        Navigation.setRoot(mainRoot);
+        setError(false);
+      })
+      .catch(error => {
+        console.log('333');
+        setError(true);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -15,6 +47,18 @@ const RegisterScreen = props => {
         style={styles.logo}
         source={require('../assets/logo.png')}
       />
+
+      {error ? (
+        <Text
+          theme={{
+            colors: {
+              text: '#ffffff',
+            },
+          }}
+          style={{alignSelf: 'center', marginVertical: 16}}>
+          {'An error has occurred'}
+        </Text>
+      ) : null}
 
       <TextInput
         style={styles.username}
@@ -95,15 +139,7 @@ const RegisterScreen = props => {
         mode="contained"
         color="#ffb300"
         dark
-        onPress={() =>
-          Navigation.setRoot({
-            root: {
-              component: {
-                name: 'Home',
-              },
-            },
-          })
-        }>
+        onPress={() => handleRegister()}>
         Register
       </Button>
 
@@ -123,6 +159,20 @@ const RegisterScreen = props => {
       </Button>
     </View>
   );
+};
+
+const mainRoot = {
+  root: {
+    stack: {
+      children: [
+        {
+          component: {
+            name: 'Home',
+          },
+        },
+      ],
+    },
+  },
 };
 
 const styles = StyleSheet.create({

@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {Button, IconButton, Menu, Divider, Provider} from 'react-native-paper';
 import {Navigation} from 'react-native-navigation';
 
-const NavigationButtonComponent = () => {
+const NavigationButtonLogoutComponent = () => {
   const handleLogoutClick = () => {
     Navigation.setRoot({
       root: {
@@ -34,4 +34,4 @@ const NavigationButtonComponent = () => {
   );
 };
 
-export default NavigationButtonComponent;
+export default NavigationButtonLogoutComponent;

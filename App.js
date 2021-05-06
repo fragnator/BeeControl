@@ -5,7 +5,8 @@ import SettingsScreen from './views/Settings';
 import RegisterScreen from './views/Register';
 import DeviceAddEditScreen from './views/DeviceAddEdit';
 import DeviceDetailsScreen from './views/DeviceDetails';
-import NavigationButtonComponent from './components/NavigationButton';
+import NavigationButtonLogoutComponent from './components/NavigationButtonLogout';
+import NavigationButtonDeviceEditComponent from './components/NavigationButtonDeviceEdit';
 
 Navigation.registerComponent('Login', () => LoginScreen);
 Navigation.registerComponent('Home', () => HomeScreen);
@@ -14,8 +15,12 @@ Navigation.registerComponent('Register', () => RegisterScreen);
 Navigation.registerComponent('DeviceAddEdit', () => DeviceAddEditScreen);
 Navigation.registerComponent('DeviceDetails', () => DeviceDetailsScreen);
 Navigation.registerComponent(
-  'NavigationButtonComponent',
-  () => NavigationButtonComponent,
+  'NavigationButtonLogoutComponent',
+  () => NavigationButtonLogoutComponent,
+);
+Navigation.registerComponent(
+  'NavigationButtonDeviceEditComponent',
+  () => NavigationButtonDeviceEditComponent,
 );
 
 Navigation.setDefaultOptions({
