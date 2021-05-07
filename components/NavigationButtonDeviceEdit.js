@@ -5,33 +5,15 @@ import {Navigation} from 'react-native-navigation';
 
 const NavigationButtonDeviceEditComponent = props => {
   const handleEditClick = () => {
-    Navigation.setRoot({
-      root: {
-        stack: {
-          children: [
-            {
-              component: {
-                name: 'DeviceAddEdit',
-                passProps: {
-                  deviceId: props.deviceId,
-                  title: props.title,
-                },
-              },
-            },
-          ],
+    Navigation.push(props.parentComponent, {
+      component: {
+        name: 'DeviceAddEdit',
+        passProps: {
+          deviceId: props.deviceId,
+          title: props.title,
         },
       },
     });
-
-    // Navigation.push(props.componentId, {
-    //   component: {
-    //     name: 'DeviceAddEdit',
-    //     passProps: {
-    //       deviceId: props.deviceId,
-    //       title: props.title,
-    //     },
-    //   },
-    // });
   };
 
   return (

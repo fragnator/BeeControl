@@ -30,6 +30,7 @@ const DeviceAddEditScreen = props => {
   const [visible, setVisible] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const [isEdit, setIsEdit] = React.useState(false);
+  const [deviceId, setDeviceId] = React.useState(props.deviceId);
 
   const showDialog = () => setVisible(true);
   const hideDialog = () => setVisible(false);
@@ -111,37 +112,52 @@ const DeviceAddEditScreen = props => {
           userId: userId,
         })
         .then(resp => {
-          if (initalGroup !== chosenGroup) {
-            let promises = [
-              firestore()
-                .collection('hives')
-                .doc(chosenGroup)
-                .update({
-                  devices: firestore.FieldValue.arrayUnion(props.deviceId),
-                }),
-              firestore()
-                .collection('hives')
-                .doc(initalGroup)
-                .update({
-                  devices: firestore.FieldValue.arrayRemove(props.deviceId),
-                }),
-            ];
-            Promise.all(promises).then(values => {
-              Navigation.setRoot({
-                root: {
-                  stack: {
-                    children: [
-                      {
-                        component: {
-                          name: 'Home',
-                        },
+          if (initalGroup === chosenGroup) {
+            Navigation.setRoot({
+              root: {
+                stack: {
+                  children: [
+                    {
+                      component: {
+                        name: 'Home',
                       },
-                    ],
-                  },
+                    },
+                  ],
                 },
-              });
+              },
             });
+            return;
           }
+
+          let promises = [
+            firestore()
+              .collection('hives')
+              .doc(chosenGroup)
+              .update({
+                devices: firestore.FieldValue.arrayUnion(props.deviceId),
+              }),
+            firestore()
+              .collection('hives')
+              .doc(initalGroup)
+              .update({
+                devices: firestore.FieldValue.arrayRemove(props.deviceId),
+              }),
+          ];
+          Promise.all(promises).then(values => {
+            Navigation.setRoot({
+              root: {
+                stack: {
+                  children: [
+                    {
+                      component: {
+                        name: 'Home',
+                      },
+                    },
+                  ],
+                },
+              },
+            });
+          });
         });
     } else {
       firestore()
@@ -177,12 +193,13 @@ const DeviceAddEditScreen = props => {
   };
   const handleDeleteClick = () => {
     const userId = auth().currentUser.uid;
-
+    console.log(props.deviceId);
     firestore()
       .collection('devices')
       .doc(props.deviceId)
       .delete()
-      .then(resp => {
+      .then(resps => {
+        console.log(resps);
         firestore()
           .collection('hives')
           .doc(chosenGroup)
@@ -322,7 +339,10 @@ const DeviceAddEditScreen = props => {
               />
             </Dialog.Content>
             <Dialog.Actions>
-              <Button color="#fdd835" onPress={handleSaveGroup}>
+              <Button
+                color="#fdd835"
+                disabled={newGroupName.length === 0}
+                onPress={handleSaveGroup}>
                 Save
               </Button>
             </Dialog.Actions>

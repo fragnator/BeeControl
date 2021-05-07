@@ -51,6 +51,7 @@ const DeviceDetails = props => {
               passProps: {
                 deviceId: props.deviceId,
                 title: props.name,
+                parentComponent: props.componentId,
               },
             },
           },

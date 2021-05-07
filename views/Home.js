@@ -1,5 +1,12 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
@@ -23,7 +30,6 @@ import {
 } from 'react-native-paper';
 
 //TODO:
-//BACK BUTTON NA EDITDEVICE SCREENU
 //POGLEJ ZAKAJ CHART JEBE
 
 const HomeScreen = props => {
@@ -32,6 +38,10 @@ const HomeScreen = props => {
   const [loading, setLoading] = React.useState(true);
   const [dialogVisible, setDialogVisible] = React.useState(false);
   const [tempHive, setTempHive] = React.useState({});
+
+  const onRefresh = React.useCallback(() => {
+    initalLoading();
+  }, []);
 
   const handleBannerClick = () => {
     setVisible(false);
@@ -171,7 +181,10 @@ const HomeScreen = props => {
           )}
         </View>
         {!loading && (
-          <ScrollView>
+          <ScrollView
+            refreshControl={
+              <RefreshControl color="#fdd835" onRefresh={onRefresh} />
+            }>
             {hivesGroups.map((hive, index) => {
               return (
                 <Card style={styles.card} key={index}>
