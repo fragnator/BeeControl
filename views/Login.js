@@ -18,13 +18,13 @@ const LoginScreen = props => {
   }, []);
 
   const handleLoginClick = () => {
-    // if (username.length === 0 || password.length === 0) {
-    //   setError(true);
-    //   return;
-    // }
+    if (username.length === 0 || password.length === 0) {
+      setError(true);
+      return;
+    }
 
     auth()
-      .signInWithEmailAndPassword('kc7947@student.uni-lj.si', 'debil123')
+      .signInWithEmailAndPassword(username, password)
       .then(() => {
         Navigation.setRoot(mainRoot);
       })
