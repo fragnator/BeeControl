@@ -79,7 +79,10 @@ const DeviceDetails = props => {
           return {...element.data(), data: element.id};
         });
 
-        setData(...result);
+        setData({
+          data: result[0].temperature.map(tempe => tempe.value).slice(0, 5),
+        });
+
         setGraphTemperatureData(
           result[0].temperature.slice(
             result[0].temperature.length - 7,
@@ -92,9 +95,7 @@ const DeviceDetails = props => {
           result[0].humidity[result[0].humidity.length - 1].value,
         );
         setLastTemperature(
-          result[0].temperature[result[0].temperature.length - 1].value.toFixed(
-            2,
-          ),
+          result[0].temperature[result[0].temperature.length - 1].value,
         );
         setLoading(false);
       })
@@ -274,18 +275,7 @@ const DeviceDetails = props => {
               <LineChart
                 data={{
                   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                  datasets: [
-                    {
-                      data: [
-                        Math.random() * (30 - 20) + 20,
-                        Math.random() * (30 - 20) + 20,
-                        Math.random() * (30 - 20) + 20,
-                        Math.random() * (30 - 20) + 20,
-                        Math.random() * (30 - 20) + 20,
-                        Math.random() * (30 - 20) + 20,
-                      ],
-                    },
-                  ],
+                  datasets: [data],
                 }}
                 width={Dimensions.get('window').width - 30} // from react-native
                 height={220}
@@ -327,6 +317,7 @@ const DeviceDetails = props => {
                     background: 'transparent',
                   },
                 }}
+                editable={false}
                 style={{margin: 16}}
                 underlineColor="#fdd835"
                 label="Description"
