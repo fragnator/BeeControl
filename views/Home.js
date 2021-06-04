@@ -30,7 +30,7 @@ import {
 } from 'react-native-paper';
 
 const HomeScreen = props => {
-  const [visible, setVisible] = React.useState(true);
+  const [visible, setVisible] = React.useState(false);
   const [hivesGroups, setHivesGroups] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [dialogVisible, setDialogVisible] = React.useState(false);
@@ -91,6 +91,12 @@ const HomeScreen = props => {
       let devices = values[0].docs.map(element => {
         return {...element.data(), deviceId: element.id};
       });
+
+      setVisible(
+        devices.findIndex(
+          device => device.deviceId === '2vnAHq6RDTbbBlEBmoXt',
+        ) !== -1,
+      );
 
       let hives = values[1].docs.map(element => {
         return {...element.data(), hiveId: element.id};
