@@ -29,9 +29,6 @@ import {
   Provider,
 } from 'react-native-paper';
 
-//TODO:
-//POGLEJ ZAKAJ CHART JEBE
-
 const HomeScreen = props => {
   const [visible, setVisible] = React.useState(true);
   const [hivesGroups, setHivesGroups] = React.useState([]);
@@ -48,6 +45,10 @@ const HomeScreen = props => {
     Navigation.push(props.componentId, {
       component: {
         name: 'DeviceDetails',
+        passProps: {
+          title: 'Panj 3',
+          deviceId: '2vnAHq6RDTbbBlEBmoXt',
+        },
       },
     });
   };
@@ -169,7 +170,7 @@ const HomeScreen = props => {
               icon="beehive-outline"
             />
           )}>
-          There was a problem with BeeHive #1
+          There was a problem with Panj 3
         </Banner>
         <View>
           {loading && (
